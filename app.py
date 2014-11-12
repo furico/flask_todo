@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask
+from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -25,7 +25,7 @@ class Todo(db.Model):
 
 @app.route('/')
 def show_all():
-    return "This is root!"
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
