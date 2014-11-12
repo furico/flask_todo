@@ -1,9 +1,15 @@
 from datetime import datetime
 from flask import Flask, render_template, flash, request, url_for, redirect
 from flask.ext.sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
-app.config.from_object('config.Config')
+
+if 'APP_SETTINGS' not in os.environ:
+    app.config.from_object('config.DevelopmentConfig')
+else:
+    app.config.from_object(os.environ['APP_SETTINGS'])
+
 db = SQLAlchemy(app)
 
 
